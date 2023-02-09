@@ -57,6 +57,62 @@ const deleteRock = async (req, res) => {
     }
 }
 
+const newOwner = async (req, res) => {
+    try{
+        const owner = await new Rock(req.body)
+        await owner.save()
+        return res.status(201).json({
+            owner,
+        });
+    } catch (error) {
+        return res.status(400).json({ error: error.message })
+    }
+}
+
+const getAllOwners = async (req, res) => {
+    try {
+        const owner = await Owner.find()
+        return res.status(200).json({ owner })
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
+}
+
+const getOwnerById = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const owner = await Owner.findById(id)
+        if(owner) {
+            return res.status(200).json({ owner });
+        } 
+        return res.status(404).send('Rock with that ID does not exist');
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+const updateOwner = async (req,res) => {
+    try {
+        const owner = await Owner.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        res.status(200).json(owner)
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+const deleteOwner = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleted = await Owner.findByIdAndDelete(id)
+        if (deleted) {
+            return res.status(200).send('Rock smashed into oblivion');
+        }
+        throw new Error('Rock not found');
+    } catch (error) {
+        return res.status(400).send(error.message);
+    }
+}
+
 
 
 module.exports = {
@@ -64,5 +120,10 @@ module.exports = {
     getAllRocks,
     getRockById,
     updateRock,
-    deleteRock
+    deleteRock,
+    newOwner,
+    getAllOwners,
+    getOwnerById,
+    updateOwner,
+    deleteOwner
 }
