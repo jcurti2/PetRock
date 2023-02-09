@@ -8,4 +8,6 @@ router.post('/rocks', controllers.digUpNewRock)
 
 router.get('/rocks', controllers.getAllRocks)
 
+router.get('/rocks/:id', controllers.getRockById)
+
 module.exports = router;
