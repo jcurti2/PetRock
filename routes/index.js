@@ -6,4 +6,6 @@ router.get('/', (req, res) => res.send('this is earths core!!!'))
 
 router.post('/rocks', controllers.digUpNewRock)
 
+router.get('/rocks', controllers.getAllRocks)
+
 module.exports = router;
