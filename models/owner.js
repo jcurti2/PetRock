@@ -10,4 +10,4 @@ const Owner = new Schema(
     {timestamps: true}
 )
 
-module.exports = Owner
+module.exports = mongoose.model('Owner', Owner)

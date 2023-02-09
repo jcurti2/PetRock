@@ -12,4 +12,4 @@ const Rock = new Schema(
     { timestamps: true }
 )
 
-module.exports = Rock
+module.exports = mongoose.model('Rock', Rock)
