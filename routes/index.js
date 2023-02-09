@@ -14,14 +14,14 @@ router.put('/rocks/:id', controllers.updateRock)
 
 router.delete('/rocks/:id', controllers.deleteRock)
 
-// router.post('/user', controllers.newUser)
+router.post('/owner', controllers.newOwner)
 
-// router.get('/user', controllers.getAllUsers)
+router.get('/owner', controllers.getAllOwners)
 
-// router.get('/user/:id', controllers.getUserById)
+router.get('/owner/:id', controllers.getOwnerById)
 
-// router.put('/user/:id', controllers.updateUser)
+router.put('/owner/:id', controllers.updateOwner)
 
-// router.delete('/user/:id', controllers.deleteUser)
+router.delete('/owner/:id', controllers.deleteOwner)
 
 module.exports = router;
