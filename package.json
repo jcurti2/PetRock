@@ -1,0 +1,23 @@
+{
+  "name": "petrock",
+  "version": "1.0.0",
+  "description": "[LinkedIn](https://www.linkedin.com/in/josh-curtis-77284769/) [GitHub](https://github.com/jcurti2)  *** ### ***Description*** #### This is my PetRock app where you try and obtain the rarest rock collection with limited monetary resources.  *** ### ***Techonologies Used*** * React * MongoDB * Node.js * Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcurti2/PetRock.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcurti2/PetRock/issues"
+  },
+  "homepage": "https://github.com/jcurti2/PetRock#readme",
+  "dependencies": {
+    "mongoose": "^6.9.1"
+  }
+}
