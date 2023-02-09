@@ -35,10 +35,34 @@ const getRockById = async (req, res) => {
     }
 }
 
+const updateRock = async (req,res) => {
+    try {
+        const rock = await Rock.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        res.status(200).json(rock)
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+const deleteRock = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleted = await Rock.findByIdAndDelete(id)
+        if (deleted) {
+            return res.status(200).send('Rock smashed into oblivion');
+        }
+        throw new Error('Rock not found');
+    } catch (error) {
+        return res.status(400).send(error.message);
+    }
+}
+
 
 
 module.exports = {
     digUpNewRock,
     getAllRocks,
-    getRockById
+    getRockById,
+    updateRock,
+    deleteRock
 }
