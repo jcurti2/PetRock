@@ -14,4 +14,14 @@ router.put('/rocks/:id', controllers.updateRock)
 
 router.delete('/rocks/:id', controllers.deleteRock)
 
+// router.post('/user', controllers.newUser)
+
+// router.get('/user', controllers.getAllUsers)
+
+// router.get('/user/:id', controllers.getUserById)
+
+// router.put('/user/:id', controllers.updateUser)
+
+// router.delete('/user/:id', controllers.deleteUser)
+
 module.exports = router;
