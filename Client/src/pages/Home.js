@@ -5,31 +5,37 @@ import axios from 'axios'
 
 const Home = () => {
 //const will be created here
-const [searchQuery, setSearchQuery] = useState('')
+const [ownerName, setOwnerName] = useState('')
 
 //functions created here
-const testClick = async (e) => {
-  e.preventDefault()
-    let response = await axios.get('http://localhost:3001/api/owner/')
-    setSearchQuery(response)
-    console.log(response);
-
+const submitClick = async (e) => {
+    e.preventDefault()
+    const response = await axios.post('http://localhost:3001/api/owner/',{
+      "name": ownerName,
+      "money": "1000"
+  })
+    console.log(ownerName);
 }
 
 
-// const handleChange = (event) => {
-//     setSearchQuery(event.target.value)
-//   }
-
-
-
-
-
-  return (
+const handleChange = (event) => {
+    setOwnerName(event.target.value)
+  }
+return (
     <div>
-      <PageOne testClick={testClick} />
+      <PageOne submitClick={submitClick} handleChange={handleChange} ownerName={ownerName} />
     </div>
   )
 }
 
 export default Home
+
+
+
+//reference button
+// const testClick = async (e) => {
+//   e.preventDefault()
+//     let response = await axios.get('http://localhost:3001/api/owner/')
+//     setSearchQuery(response)
+//     console.log(response);
+// }
