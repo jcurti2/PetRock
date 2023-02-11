@@ -16,9 +16,9 @@ const location  = useLocation();
 const getOwners = async () => {
     let temp = await axios.get(`http://localhost:3001/api/owner/${location.state.id}`)
     setOwner(temp)
-    console.log(temp);
+    // console.log(temp.data.owner.name);
 }
-
+// console.log(owner.data.owner.name);
  
  useEffect(() =>{
 getOwners()
@@ -26,7 +26,8 @@ getOwners()
 
   return (
     <div>
-      
+      {owner.data.owner.name}
+      {owner.data.owner.money}
      
     </div>
   )
