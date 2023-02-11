@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PageOne from '../components/PageOne'
 import axios from 'axios'
 
 const Home = () => {
 //const will be created here
 const [ownerName, setOwnerName] = useState('')
+const navigate = useNavigate()
 
 //functions created here
 const submitClick = async (e) => {
@@ -14,6 +15,9 @@ const submitClick = async (e) => {
       "name": ownerName,
       "money": "1000"
   })
+  let ownerId = response.data.owner._id
+
+navigate('/page2', {state:{id:ownerId,}})
     console.log(ownerName);
 }
 
