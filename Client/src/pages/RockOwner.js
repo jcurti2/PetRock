@@ -18,15 +18,16 @@ const getOwners = async () => {
     setOwner(temp)
     console.log(temp);
 }
- getOwners()
- useEffect = () =>{
 
- },[owner]
+ 
+ useEffect(() =>{
+getOwners()
+ },[])
 
   return (
     <div>
-      {/* {owner} */}
       
+     
     </div>
   )
 }
