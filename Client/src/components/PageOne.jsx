@@ -1,6 +1,6 @@
 const PageOne = ({handleChange, ownerName ,submitClick}) => {
   return (
-      <form onClick = {(e) => submitClick(e)}>
+      <form onSubmit = {(e) => submitClick(e)}>
         <input 
             type='text'
             value={ownerName}
