@@ -40,10 +40,10 @@ const getRockById = async (req, res) => {
 
 const getRockByOwnerId = async (req, res) => {
     try{
-        const { id } = req.params.owner_id
+        const  id  = req.params.owner_id
         
         // const query = { owner_id:id }
-        const rock = await Rock.find({ owner_id:id  }).exec();
+        const rock = await Rock.find({ owner_id:id  });
         if(rock) {
             return res.status(200).json({ rock });
         } 
