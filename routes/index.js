@@ -2,6 +2,8 @@ const { Router } = require('express');
 const controllers = require('../controllers')
 const router = Router();
 
+router.get('/rocksowner/:owner_id', controllers.getRockByOwnerId)
+
 router.get('/', (req, res) => res.send('this is earths core!!!'))
 
 router.post('/rocks', controllers.digUpNewRock)
@@ -23,5 +25,7 @@ router.get('/owner/:id', controllers.getOwnerById)
 router.put('/owner/:id', controllers.updateOwner)
 
 router.delete('/owner/:id', controllers.deleteOwner)
+
+
 
 module.exports = router;

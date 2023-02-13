@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
-import PageTwo from '../components/PageTwo'
+import RockComponent from '../components/RockComponent'
 
 
 const RockOwner = () => {
@@ -12,7 +12,7 @@ const location  = useLocation();
 //pass this into get owner by id
 // ${location.state.id}
 
-const [rock, setRock] = useState('')
+const [rock, setRock] = useState()
 
 const [rockDelete, setRockDelete] = useState('')
 
@@ -21,16 +21,18 @@ const [newlyGeneratedRock, setNewlyGeneratedRock] = useState('')
 //functions
 
 const getOwners = async () => {
-    let temp = await axios.get(`http://localhost:3001/api/owner/${location.state.id}`)
+    const temp = await axios.get(`http://localhost:3001/api/owner/${location.state.id}`)
     setOwner(temp.data.owner)
-    // console.log(temp.data.owner.name);
+    console.log(temp.data.owner);
 }
 
+
 const getRock = async () => {
-  let temp = await axios.get(`http://localhost:3001/api/rocks/`)
-  setRock(temp)
-  // console.log(temp.data.rocks[0]);
+  const temp = await axios.get(`http://localhost:3001/api/rocks/`)
+  setRock(temp.data)
+  // console.log(temp.data);
 }
+// console.log(rock.data);
 // console.log(rock.data.rocks[0].name);
 
 
@@ -69,7 +71,11 @@ getRock()
       {owner.name}
       {owner.money}
       {owner.picture}
-      <PageTwo rock={rock}  />
+
+       <section className="container-grid">
+      
+      <RockComponent  rock={rock} owner={owner}/>
+      </section>
       <button type='submit'>Buy Rock</button>
       <button type='submit'>Sell Rock</button>
       <button type='submit'>Change Rock Name</button>

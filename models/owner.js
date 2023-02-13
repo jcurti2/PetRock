@@ -5,7 +5,8 @@ const Owner = new Schema(
     { 
         name: { type: String, required: true },
         money: { type: Number, required: true},
-        picture: { type: String, required: false}
+        picture: { type: String, required: false},
+        rocks: [{type: Schema.Types.ObjectId, ref: 'Rocks', required: true}]
     },
     {timestamps: true}
 )
