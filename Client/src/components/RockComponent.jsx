@@ -9,12 +9,15 @@ import rockData from '../rockData.json'
 const RockComponent = (props) => {
 
 
-const [rock, setRock] = useState([])
+  const [rock, setRock] = useState([])
+
+  const [randRock, setRandRock] = useState([])
 
 
 function rockGenerator(){
  const arr = [] 
-for(let i = 0; i < 5; i++){
+    for(let i = 0; i < 5; i++){
+      console.log(`iteration ${i}`)
   // const min = 1;
   //   const max = 100;
   //   const rand = min + Math.random() * (max - min);
@@ -25,10 +28,11 @@ for(let i = 0; i < 5; i++){
     "rarity": 1 + Math.random() * (100 - 1),
     "cost": 1 + Math.random() * (1000 - 1),
     }
-    
-    arr.push([...temp])
+    console.log(temp)
+    arr.push(temp)
 }
-  setRock(arr)
+console.log(arr)  
+setRandRock(arr)
 }
 
 // if(props.generated == true)
@@ -67,30 +71,45 @@ for(let i = 0; i < 5; i++){
 
   const getRock = async () => {
     const temp = await axios.get(`http://localhost:3001/api/rocks/`)
-    setRock(temp.data)
+    setRock(temp.data.rocks)
+
     // console.log(temp.data);
   }
 
 useEffect(() => {
   getRock()
-  rockGenerator()
-},[])
   
-  // console.log(props.rock);
+},[])
+
+useEffect(()=> {
+  rockGenerator()
+},[]);
+  
+  console.log(rock);
   return (
     <div>
-     {/* Rock Name: {props.rock.data.rocks[0].name} */}
-    {rock.rocks &&(
-    rock.rocks.map((singleRock)=> (
+      <div>
+        {randRock.map((indvRock) => {
+          return (
+            <div key={indvRock.name}>
+              <img src={indvRock.picture} alt={indvRock.name} />
+              <p>Name: {indvRock.name}</p>
+              <p>Rarity: {indvRock.rarity}</p>
+              <p>Cost: {indvRock.cost}</p>
+              <button type='submit'>Buy Rock</button>
+            </div>
+          );
+        })}
+     
+      </div>
+     {rock &&( 
+     rock.map((singleRock)=> (
     
       <div key={singleRock.id}>Name: {singleRock.name}
-        {!singleRock.owner_id &&
-        <button type='submit'>Buy Rock</button>}
-        {singleRock.owner_id && (
-        <button type='submit'>Sell Rock</button>)}
-        {singleRock.owner_id && (
-        <button type='submit'>Change Rock Name</button>)}
-      </div>
+        
+         {singleRock.owner_id &&    <button type='submit'>Sell Rock</button>}
+         {singleRock.owner_id &&    <button type='submit'>Change Rock Name</button>}
+       </div> 
       
     )))}
     </div>
