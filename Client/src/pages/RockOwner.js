@@ -34,8 +34,10 @@ getOwners()
       {owner.money}
 
       {owner.picture}
-
-      <RockComponent owner={owner}/>
+{/* //Get rocks */}
+      <RockComponent generated={false} owner={owner}/>
+{/* //Generate Rocks */}
+      <RockComponent generated = {true} owner={owner}/>
       
     </div>
   )

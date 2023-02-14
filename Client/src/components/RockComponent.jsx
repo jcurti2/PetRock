@@ -9,26 +9,32 @@ import rockData from '../rockData.json'
 const RockComponent = (props) => {
 
 
-const [rock, setRock] = useState()
+const [rock, setRock] = useState([])
 
 
 function rockGenerator(){
-  
+ const arr = [] 
 for(let i = 0; i < 5; i++){
-  const min = 1;
-    const max = 100;
-    const rand = min + Math.random() * (max - min);
+  // const min = 1;
+  //   const max = 100;
+  //   const rand = min + Math.random() * (max - min);
   let temp = {
     
     "name": "Anorthosite",
-    "picture": rockData.picture[1 + Math.random() * (rockData.length - 1)], 
+    "picture": rockData.picture[1 + Math.random() * ((rockData.picture.length) - 1)], 
     "rarity": 1 + Math.random() * (100 - 1),
     "cost": 1 + Math.random() * (1000 - 1),
     }
-    setRock(temp)
+    
+    arr.push([...temp])
 }
-  
+  setRock(arr)
 }
+
+// if(props.generated == true)
+// {
+//   rockGenerator();
+// }
   
 
 
@@ -67,14 +73,14 @@ for(let i = 0; i < 5; i++){
 
 useEffect(() => {
   getRock()
+  rockGenerator()
 },[])
   
   // console.log(props.rock);
   return (
     <div>
      {/* Rock Name: {props.rock.data.rocks[0].name} */}
-    {rock &&
-    rock.rocks.length > 0 &&(
+    {rock.rocks &&(
     rock.rocks.map((singleRock)=> (
     
       <div key={singleRock.id}>Name: {singleRock.name}
