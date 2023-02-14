@@ -28,25 +28,19 @@ function rockGenerator(){
     "rarity": 1 + Math.random() * (100 - 1),
     "cost": 1 + Math.random() * (1000 - 1),
     }
-    console.log(temp)
+    // console.log(temp)
     arr.push(temp)
 }
-console.log(arr)  
+// console.log(arr)  
 setRandRock(arr)
 }
 
 
-// const createRock = async () => {
-//     let temp = await axios.post(`http://localhost:3001/api/rocks`)
-//     setRock(temp)
-//     console.log(temp);
-// } 
-
-// const sellRock = async () => {
-//   let temp = await axios.delete(`http://localhost:3001/api/rocks/${ROCKIDNUMBER}`)
-//   setRockDelete(temp)
-//   console.log(temp);
-// }
+const sellRock = async ( id ) => {console.log();
+  await axios.delete(`http://localhost:3001/api/rocks/${id}`)
+  // setRock(temp)
+  getRock();
+}
 
 // const changeRockName = async () => {
 //     let temp = await axios.put(`http://localhost:3001/api/rocks/${ROCKIDNUMBER}`)
@@ -57,8 +51,6 @@ setRandRock(arr)
   const getRock = async () => {
     const temp = await axios.get(`http://localhost:3001/api/rocks/`)
     setRock(temp.data.rocks)
-
-    // console.log(temp.data);
   }
 
 useEffect(() => {
@@ -90,10 +82,9 @@ useEffect(()=> {
      {rock &&( 
      rock.map((singleRock)=> (
     
-      <div key={singleRock.id}>Name: {singleRock.name}
-        
-         {singleRock.owner_id &&    <button type='submit'>Sell Rock</button>}
-         {singleRock.owner_id &&    <button type='submit'>Change Name</button>}
+       <div key={singleRock.id}>Name: {singleRock.name}       
+        <button onClick={() => sellRock(singleRock._id)}>Sell Rock</button>
+        {/* <button onClick={onClick} >Change Name</button> */}
        </div> 
       
     )))}
