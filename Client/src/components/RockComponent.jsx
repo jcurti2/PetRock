@@ -4,26 +4,31 @@ import axios from 'axios'
 import { useState } from 'react'
 import rockData from '../rockData.json'
 
-const [rock, setRock] = useState()
+
 
 const RockComponent = (props) => {
 
-// function rockGenerator(){
+
+const [rock, setRock] = useState()
+
+
+function rockGenerator(){
   
-// for(let i = 0; i < 5; i++){
-//   const min = 1;
-//     const max = 100;
-//     const rand = min + Math.random() * (max - min);
-//   const temp = {
+for(let i = 0; i < 5; i++){
+  const min = 1;
+    const max = 100;
+    const rand = min + Math.random() * (max - min);
+  let temp = {
     
-//     "name": "Anorthosite",
-//     "picture": rockData[1 + Math.random() * (rockData.length - 1)],    how to access json file
-//     "rarity": 1 + Math.random() * (100 - 1),
-//     "cost": 1 + Math.random() * (1000 - 1),
-//     }
-// }
-//    setGenerateRock(temp)
-// }
+    "name": "Anorthosite",
+    "picture": rockData.picture[1 + Math.random() * (rockData.length - 1)], 
+    "rarity": 1 + Math.random() * (100 - 1),
+    "cost": 1 + Math.random() * (1000 - 1),
+    }
+    setRock(temp)
+}
+  
+}
   
 
 

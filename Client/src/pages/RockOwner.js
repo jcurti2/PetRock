@@ -16,7 +16,7 @@ const location  = useLocation();
 //functions
 
 const getOwners = async () => {
-    const temp = await axios.get(`http://localhost:3001/api/owner/63eacef8dbb868e916281fda`)
+    const temp = await axios.get(`http://localhost:3001/api/owner/${location.state.id}`)
     setOwner(temp.data.owner)
     console.log(temp.data.owner);
 }
