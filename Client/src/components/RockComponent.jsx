@@ -35,16 +35,6 @@ console.log(arr)
 setRandRock(arr)
 }
 
-// if(props.generated == true)
-// {
-//   rockGenerator();
-// }
-  
-
-
-// const [rockDelete, setRockDelete] = useState('')
-
-// const [newlyGeneratedRock, setNewlyGeneratedRock] = useState('')
 
 // const createRock = async () => {
 //     let temp = await axios.post(`http://localhost:3001/api/rocks`)
@@ -52,18 +42,13 @@ setRandRock(arr)
 //     console.log(temp);
 // } 
 
-// const generateRock = () => {
-// //this function needs to generate a new rock randomly for user to decide to keep or discard
-
-// }
-
 // const sellRock = async () => {
 //   let temp = await axios.delete(`http://localhost:3001/api/rocks/${ROCKIDNUMBER}`)
 //   setRockDelete(temp)
 //   console.log(temp);
 // }
 
-// const changeRockName = () => {
+// const changeRockName = async () => {
 //     let temp = await axios.put(`http://localhost:3001/api/rocks/${ROCKIDNUMBER}`)
 //     setRockName(temp)
 //     console.log(temp);
@@ -108,7 +93,7 @@ useEffect(()=> {
       <div key={singleRock.id}>Name: {singleRock.name}
         
          {singleRock.owner_id &&    <button type='submit'>Sell Rock</button>}
-         {singleRock.owner_id &&    <button type='submit'>Change Rock Name</button>}
+         {singleRock.owner_id &&    <button type='submit'>Change Name</button>}
        </div> 
       
     )))}
