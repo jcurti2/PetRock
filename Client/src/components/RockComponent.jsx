@@ -13,14 +13,18 @@ const RockComponent = (props) => {
 
   const [randRock, setRandRock] = useState([])
 
+  const [updateRock, setUpdateRock] = useState({Name: `${rock}`})
+  
 
+  const getRock = async () => {
+    const temp = await axios.get(`http://localhost:3001/api/rocks/`)
+    setRock(temp.data.rocks)
+  }
+  
 function rockGenerator(){
  const arr = [] 
     for(let i = 0; i < 5; i++){
-      console.log(`iteration ${i}`)
-  // const min = 1;
-  //   const max = 100;
-  //   const rand = min + Math.random() * (max - min);
+
   let temp = {
     
     "name": "Anorthosite",
@@ -28,30 +32,28 @@ function rockGenerator(){
     "rarity": 1 + Math.random() * (100 - 1),
     "cost": 1 + Math.random() * (1000 - 1),
     }
-    // console.log(temp)
     arr.push(temp)
-}
-// console.log(arr)  
-setRandRock(arr)
+  }   
+    setRandRock(arr)
 }
 
 
-const sellRock = async ( id ) => {console.log();
+const sellRock = async ( id ) => {
   await axios.delete(`http://localhost:3001/api/rocks/${id}`)
-  // setRock(temp)
   getRock();
 }
 
-// const changeRockName = async () => {
-//     let temp = await axios.put(`http://localhost:3001/api/rocks/${ROCKIDNUMBER}`)
-//     setRockName(temp)
-//     console.log(temp);
-// }
+const handleSubmit = async (e, id) => {
+    e.preventDefault()
+    let response = await axios.put(`http://localhost:3001/api/rocks/${id}`)
+    getRock()
+}
 
-  const getRock = async () => {
-    const temp = await axios.get(`http://localhost:3001/api/rocks/`)
-    setRock(temp.data.rocks)
-  }
+const handleChange = (event) => {
+  event.preventDefault()  
+  setUpdateRock(
+      {[event.target.name] : event.target.value})
+}
 
 useEffect(() => {
   getRock()
@@ -84,7 +86,19 @@ useEffect(()=> {
     
        <div key={singleRock.id}>Name: {singleRock.name}       
         <button onClick={() => sellRock(singleRock._id)}>Sell Rock</button>
-        {/* <button onClick={onClick} >Change Name</button> */}
+        
+        
+        
+        <form onSubmit = {(e) => handleSubmit(e, singleRock._id )}>
+        <input 
+            type='text'
+            // value={updateRock}
+            placeholder="Rock Name"
+            onChange={handleChange}
+            >
+          </input>
+          <button type='submit'>ChangeName</button>
+          </form>
        </div> 
       
     )))}
