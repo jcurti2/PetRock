@@ -54,9 +54,12 @@ useEffect(() => {
     rock.rocks.map((singleRock)=> (
     
       <div key={singleRock.id}>Name: {singleRock.name}
-        <button type='submit'>Buy Rock</button>
-        <button type='submit'>Sell Rock</button>
-        <button type='submit'>Change Rock Name</button>
+        {!singleRock.owner_id &&
+        <button type='submit'>Buy Rock</button>}
+        {singleRock.owner_id && (
+        <button type='submit'>Sell Rock</button>)}
+        {singleRock.owner_id && (
+        <button type='submit'>Change Rock Name</button>)}
       </div>
       
     )))}
