@@ -100,7 +100,6 @@ const getOwnerById = async (req, res) => {
     try{
         const { id } = req.params;
         const owner = await Owner.findById(id)
-        .populate('rocks')
         if(owner) {
             return res.status(200).json({ owner });
         } 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import PageOne from '../components/PageOne'
 import axios from 'axios'
-import PageTwo from '../components/RockComponent'
+// import PageTwo from '../components/RockComponent'
 
 const Home = () => {
 //const will be created here
