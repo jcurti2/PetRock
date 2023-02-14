@@ -3,17 +3,24 @@ import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
 import rockData from '../rockData.json'
+import EditRock from './EditRock'
 
 
 
 const RockComponent = (props) => {
 
-
   const [rock, setRock] = useState([])
 
   const [randRock, setRandRock] = useState([])
 
-  const [updateRock, setUpdateRock] = useState({Name: `${rock}`})
+  // const [updateRock, setUpdateRock] = useState({})
+
+  const [ownerRockId, setownerRockId] = useState('')
+
+  const [editing, setEditing] = useState(true)
+
+
+
   
 
   const getRock = async () => {
@@ -43,17 +50,15 @@ const sellRock = async ( id ) => {
   getRock();
 }
 
-const handleSubmit = async (e, id) => {
-    e.preventDefault()
-    let response = await axios.put(`http://localhost:3001/api/rocks/${id}`)
-    getRock()
-}
 
-const handleChange = (event) => {
-  event.preventDefault()  
-  setUpdateRock(
-      {[event.target.name] : event.target.value})
-}
+
+
+
+// const handleEditState = (rock) => { 
+//     setUpdateRock({name:`${rock.name}`})
+//     setownerRockId(rock._id)
+// }
+
 
 useEffect(() => {
   getRock()
@@ -84,21 +89,21 @@ useEffect(()=> {
      {rock &&( 
      rock.map((singleRock)=> (
     
-       <div key={singleRock.id}>Name: {singleRock.name}       
+       <div key={singleRock._id}> <EditRock rock={singleRock} getRock={getRock}/>Name: {singleRock.name}       
         <button onClick={() => sellRock(singleRock._id)}>Sell Rock</button>
         
-        
-        
-        <form onSubmit = {(e) => handleSubmit(e, singleRock._id )}>
+        {/* <form onSubmit = {(e) => handleSubmit(e, singleRock._id )}>
         <input 
             type='text'
-            // value={updateRock}
+            value={singleRock.name}
             placeholder="Rock Name"
             onChange={handleChange}
             >
           </input>
-          <button type='submit'>ChangeName</button>
-          </form>
+          <button onClick={() => 
+            handleEditState(singleRock)
+          } type='submit'>ChangeName</button>
+          </form> */}
        </div> 
       
     )))}
