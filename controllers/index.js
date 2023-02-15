@@ -1,6 +1,36 @@
 const Rock = require('../models/rock');
 const Owner = require('../models/owner');
 
+const getOwnerByOwnerId = async (req, res) => {
+    try{
+        const  id  = req.params.name
+        
+        // const query = { owner_id:id }
+        const owner = await Owner.find({ name:id  });
+        if(owner) {
+            return res.status(200).json({ owner });
+        } 
+        return res.status(404).send('Owner with that Owner ID does not exist');
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+const getRockByOwnerId = async (req, res) => {
+    try{
+        const  id  = req.params.owner_id
+        
+        // const query = { owner_id:id }
+        const rock = await Rock.find({ owner_id:id  });
+        if(rock) {
+            return res.status(200).json({ rock });
+        } 
+        return res.status(404).send('Rock with that Owner ID does not exist');
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 const digUpNewRock = async (req, res) => {
     try{
         const rock = await new Rock(req.body)
@@ -38,20 +68,7 @@ const getRockById = async (req, res) => {
     }
 }
 
-const getRockByOwnerId = async (req, res) => {
-    try{
-        const  id  = req.params.owner_id
-        
-        // const query = { owner_id:id }
-        const rock = await Rock.find({ owner_id:id  });
-        if(rock) {
-            return res.status(200).json({ rock });
-        } 
-        return res.status(404).send('Rock with that Owner ID does not exist');
-    } catch (error) {
-        return res.status(500).send(error.message);
-    }
-}
+
 
 const updateRock = async (req,res) => {
     try {
@@ -145,4 +162,5 @@ module.exports = {
     updateOwner,
     deleteOwner,
     getRockByOwnerId,
+    getOwnerByOwnerId
 }

@@ -18,6 +18,7 @@ const location  = useLocation();
 const getOwners = async () => {
     const temp = await axios.get(`http://localhost:3001/api/owner/${location.state.id}`)
     setOwner(temp.data.owner)
+    console.log('here,' + `${location.state.id}`);
 }
 
  useEffect(() =>{
@@ -34,7 +35,7 @@ getOwners()
 
       {owner.picture}
 
-      <RockComponent owner={owner}/>
+      <RockComponent owner={owner} getOwners={getOwners}/>
       
     </div>
   )

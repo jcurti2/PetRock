@@ -45,30 +45,45 @@ function rockGenerator(){
 }
 
 
-const sellRock = async ( id ) => {
-  await axios.delete(`http://localhost:3001/api/rocks/${id}`)
+const sellRock = async ( rock ) => {
+
+  let temp = await axios.get(`http://localhost:3001/api/owner/${owner._id}`)
+
+  let verifyOwner = temp.data.owner
+  
+  verifyOwner.money = verifyOwner.money + Math.floor((rock.cost * .75))
+
+  let response = await axios.put(`http://localhost:3001/api/owner/${verifyOwner._id}`,verifyOwner)
+  
+  await axios.delete(`http://localhost:3001/api/rocks/${rock._id}`)
+
   getRock();
+
+  getOwners();
 }
 
 
 const buyRock = async (rock) => {
-  console.log(owner);
-
-  // let temp = await axios.get(`http://localhost:3001/api/owner/${owner._id}`)
+  
   rock.owner_id = owner._id
-  
-  await axios.post(`http://localhost:3001/api/rocks/`, rock)
-  
-  getRock()
 
-  // let ownerMoney = temp.data.owner.money
-      
-  // if (ownerMoney - rock.cost >= 0)
-  // {ownerMoney -= rock.cost
-  //   await axios.put(`http://localhost:3001/api/owner/${ownerMoney}`)
-  // } else {
+  let temp = await axios.get(`http://localhost:3001/api/owner/${owner._id}`)
+
+  let verifyOwner = temp.data.owner
+
+  if (verifyOwner.money - rock.cost >= 0)
+  {
+  verifyOwner.money = verifyOwner.money - rock.cost
+
+  let response = await axios.put(`http://localhost:3001/api/owner/${verifyOwner._id}`,verifyOwner)
+
+  await axios.post(`http://localhost:3001/api/rocks/`, rock)
+} else{
+  alert('Not enought money')
+}
+  getOwners()
+  getRock()
   
-  // }
 }
 
 useEffect(() => {
@@ -101,7 +116,7 @@ useEffect(()=> {
      rock.map((singleRock)=> (
     
        <div key={singleRock._id}> <EditRock rock={singleRock} getRock={getRock}/>Name: {singleRock.name}       
-        <button onClick={() => sellRock(singleRock._id)}>Sell Rock</button>
+        <button onClick={() => sellRock(singleRock)}>Sell Rock</button>
        </div> 
       
     )))}
