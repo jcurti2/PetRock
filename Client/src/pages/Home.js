@@ -19,7 +19,6 @@ const submitClick = async (e) => {
   let ownerId = response.data.owner._id
 
 navigate('/page2', {state:{id:ownerId,}})
-    console.log(ownerName);
 }
 
 

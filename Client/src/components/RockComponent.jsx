@@ -17,10 +17,12 @@ const RockComponent = ({owner, getOwners}) => {
   const [updateOwnerMoney, setUpdateOwnerMoney] = useState(owner)
 
   const getRock = async () => {
-    console.log(owner._id);
+    
     const temp = await axios.get(`http://localhost:3001/api/rocksowner/${owner._id}`)
-    setRock(temp.data.rocks)
-  }
+    console.log(temp);
+    setRock(temp.data.rock)
+    console.log(rock);
+    }
   
 function rockGenerator(){
  const arr = [] 
@@ -52,23 +54,26 @@ const sellRock = async ( id ) => {
 const buyRock = async (rock) => {
   console.log(owner);
 
-  let temp = await axios.get(`http://localhost:3001/api/owner/${owner._id}`)
+  // let temp = await axios.get(`http://localhost:3001/api/owner/${owner._id}`)
+  rock.owner_id = owner._id
   
-  let ownerMoney = temp.data.owner.money
-
-  if (ownerMoney - rock.cost >= 0)
-  {
-  let res = await axios.post(`http://localhost:3001/api/rocks/`, rock)
-  ownerMoney -= rock.cost
-  await axios.put(`http://localhost:3001/api/owner/${ownerMoney}`)
-} else {
+  await axios.post(`http://localhost:3001/api/rocks/`, rock)
   
-}
-}
+  getRock()
 
+  // let ownerMoney = temp.data.owner.money
+      
+  // if (ownerMoney - rock.cost >= 0)
+  // {ownerMoney -= rock.cost
+  //   await axios.put(`http://localhost:3001/api/owner/${ownerMoney}`)
+  // } else {
+  
+  // }
+}
 
 useEffect(() => {
   getRock()
+  buyRock()
   
 },[])
 
