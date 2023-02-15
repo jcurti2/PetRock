@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import rockData from '../rockData.json'
 import EditRock from './EditRock'
+import Carousel from './Carousel'
 
 
 
@@ -29,8 +30,8 @@ function rockGenerator(){
     
     "name":randoName,
     "picture": randomPic, 
-    "rarity": 1 + Math.random() * (100 - 1),
-    "cost": 1 + Math.random() * (1000 - 1),
+    "rarity": Math.floor(1 + Math.random() * (100 - 1)),
+    "cost": Math.floor(1 + Math.random() * (1000 - 1)),
     }
     
     arr.push(temp)
@@ -44,6 +45,11 @@ const sellRock = async ( id ) => {
   getRock();
 }
 
+const buyRock = async (rock) => {
+  await axios.post(`http://localhost:3001/api/rocks/`, rock)
+  getRock();
+}
+
 
 useEffect(() => {
   getRock()
@@ -54,7 +60,6 @@ useEffect(()=> {
   rockGenerator()
 },[]);
   
-  console.log(rock);
   return (
     <div>
       <div>
@@ -65,7 +70,7 @@ useEffect(()=> {
               <p>Name: {indvRock.name}</p>
               <p>Rarity: {indvRock.rarity}</p>
               <p>Cost: {indvRock.cost}</p>
-              <button type='submit'>Buy Rock</button>
+              <button onClick={() => buyRock(indvRock)}>Buy Rock</button>
             </div>
           );
         })}

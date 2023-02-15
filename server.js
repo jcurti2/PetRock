@@ -3,6 +3,7 @@ const routes = require('./routes');
 const db = require('./db');
 const logger = require('morgan');
 const cors = require('cors')
+app.use(express.static(`${__dirname}/client/build`))
 
 const PORT = process.env.PORT || 3001;
 
@@ -17,5 +18,9 @@ app.use(logger('dev'))
 app.use('/api', routes);
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
+app.get('/*', (req, res) => {
+    res.sendFile(`${__dirname}/client/build/index.html`)
+   })
 
 app.listen(PORT, () => console.log(`listening on port: ${PORT}`))
