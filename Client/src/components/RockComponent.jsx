@@ -8,8 +8,8 @@ import Carousel from './Carousel'
 
 
 
-const RockComponent = ({owner, getOwner}) => {
-console.log(owner.money)
+const RockComponent = ({owner, getOwners}) => {
+
   const [rock, setRock] = useState([])
 
   const [randRock, setRandRock] = useState([])
@@ -17,7 +17,8 @@ console.log(owner.money)
   const [updateOwnerMoney, setUpdateOwnerMoney] = useState(owner)
 
   const getRock = async () => {
-    const temp = await axios.get(`http://localhost:3001/api/rocks/`)
+    console.log(owner._id);
+    const temp = await axios.get(`http://localhost:3001/api/rocksowner/${owner._id}`)
     setRock(temp.data.rocks)
   }
   
@@ -46,15 +47,23 @@ const sellRock = async ( id ) => {
   await axios.delete(`http://localhost:3001/api/rocks/${id}`)
   getRock();
 }
-console.log(owner);
-const buyRock = async (rock, owner) => {
-  await axios.post(`http://localhost:3001/api/rocks/`, rock)
-  const currentMoney = owner.money - rock.cost 
-  setUpdateOwnerMoney(currentMoney)
-  let response = await axios.put(`http://localhost:3001/api/owner/${updateOwnerMoney.money}`,updateOwnerMoney)
-  getOwner()
-  getRock();
+
+
+const buyRock = async (rock) => {
+  console.log(owner);
+
+  let temp = await axios.get(`http://localhost:3001/api/owner/${owner._id}`)
   
+  let ownerMoney = temp.data.owner.money
+
+  if (ownerMoney - rock.cost >= 0)
+  {
+  let res = await axios.post(`http://localhost:3001/api/rocks/`, rock)
+  ownerMoney -= rock.cost
+  await axios.put(`http://localhost:3001/api/owner/${ownerMoney}`)
+} else {
+  
+}
 }
 
 
