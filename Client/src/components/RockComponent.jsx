@@ -8,11 +8,13 @@ import Carousel from './Carousel'
 
 
 
-const RockComponent = (props) => {
-
+const RockComponent = ({owner, getOwner}) => {
+console.log(owner.money)
   const [rock, setRock] = useState([])
 
   const [randRock, setRandRock] = useState([])
+
+  const [updateOwnerMoney, setUpdateOwnerMoney] = useState(owner)
 
   const getRock = async () => {
     const temp = await axios.get(`http://localhost:3001/api/rocks/`)
@@ -44,10 +46,15 @@ const sellRock = async ( id ) => {
   await axios.delete(`http://localhost:3001/api/rocks/${id}`)
   getRock();
 }
-
-const buyRock = async (rock) => {
+console.log(owner);
+const buyRock = async (rock, owner) => {
   await axios.post(`http://localhost:3001/api/rocks/`, rock)
+  const currentMoney = owner.money - rock.cost 
+  setUpdateOwnerMoney(currentMoney)
+  let response = await axios.put(`http://localhost:3001/api/owner/${updateOwnerMoney.money}`,updateOwnerMoney)
+  getOwner()
   getRock();
+  
 }
 
 

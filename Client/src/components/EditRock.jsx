@@ -13,8 +13,7 @@ const EditRock = ({rock, getRock}) => {
 
 const handleChange = (event) => {  
   setUpdateRock(
-      {...updateRock, [event.target.name] : event.target.value})    
-console.log(updateRock)
+      {...updateRock, [event.target.name] : event.target.value})
 }
 
 
