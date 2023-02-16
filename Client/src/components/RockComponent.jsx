@@ -111,7 +111,7 @@ useEffect(()=> {
                 <p>Rarity:{singleRock.rarity}</p>
                 <p>${singleRock.cost}</p>
                 <EditRock rock={singleRock} getRock={getRock}/>
-                <button className='cardButton' onClick={() => sellRock(singleRock)}>Sell Rock</button>
+                <button className='cardButton' id='sellRock' onClick={() => sellRock(singleRock)}>Sell Rock</button>
               </div> 
       
                 ))
