@@ -1,7 +1,7 @@
-# PetRock
+# Rock Collection
 ## Date 2/9/2023
 ### By: Josh Curtis
-[LinkedIn](https://www.linkedin.com/in/josh-curtis-77284769/) [GitHub](https://github.com/jcurti2) 
+[LinkedIn](https://www.linkedin.com/in/josh-curtis-77284769/) [GitHub](https://github.com/jcurti2) [Rock Collection](https://rock-collection.herokuapp.com/)
 ***
 ### ***Description***
 #### This is my Rock Collection app where you try and obtain the rarest rock collection with limited monetary resources. 
