@@ -19,14 +19,14 @@
 
 
 ### ***Screenshots***
-#### PetRock Pictures
+#### ![Home Page](https://user-images.githubusercontent.com/121517472/219478549-97b776ea-c460-4289-8d36-74973b6b5112.png)
+
 
 ***
 ### ***Future Updates***
-- [ ] Future Update 1
-- [ ] Future Update 2
-- [x] Completed Update
-- [x] ~~Strikethrough~~ Items Also
+- [ ] A Leaderboard Page to compare collections
+- [ ] Adjusted pricing for rocks based on specific times
+- [ ] create secret Dwayne "The Rock" Johnson rock that only generates at specific time
 ***
 ### ***Credits***
 #### 
