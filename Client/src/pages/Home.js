@@ -7,6 +7,7 @@ import axios from 'axios'
 const Home = () => {
 //const will be created here
 const [ownerName, setOwnerName] = useState('')
+const [load, setLoad] = useState(false)
 const navigate = useNavigate()
 
 //functions created here
@@ -14,7 +15,7 @@ const submitClick = async (e) => {
     e.preventDefault()
     const res = await axios.get(`http://localhost:3001/api/ownername/${ownerName}`)
     console.log(res);
-    if(res.data.owner.name == ownerName){
+    if(res && Object.keys(res.data).length && res.data.owner.name == ownerName){
       navigate('/page2', {state:{id:res.data.owner._id,}})
     } 
     else{

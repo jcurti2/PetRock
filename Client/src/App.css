@@ -80,6 +80,9 @@ img{
 
 .cardButton{
   margin-top: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1),0 3px 6px rgba(0, 0, 0, .05);
+  border-width: 0;
 }
 
 .rockOwner{
@@ -167,11 +170,16 @@ img{
   align-items: center;
   margin: 5% 33% 25px 33%;
 }
-.enterButton{
-
-}
 .mainDisplay{
   background-color: rgb(250 128 114 / 65%);
   height: 20rem;
   border-radius: 5%;
+}
+
+.backBtn{
+
+}
+.randRocks{
+  font-size: 50px;
+  margin: 20px
 }

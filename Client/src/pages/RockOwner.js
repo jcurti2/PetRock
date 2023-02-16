@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
 import RockComponent from '../components/RockComponent'
+import { useNavigate } from 'react-router-dom'
 
 
 const RockOwner = () => {
@@ -10,6 +11,11 @@ const RockOwner = () => {
 const [owner, setOwner] = useState('')
 const location  = useLocation();
 const [load, setLoad] = useState(false)
+const navigate = useNavigate();
+
+const goBack = () => {
+  navigate(-1);
+}
 
 //pass this into get owner by id
 // ${location.state.id}
@@ -40,7 +46,7 @@ getOwners()
       {owner.picture}
 </div>
       {load && (<RockComponent owner={owner} getOwners={getOwners}/>) }
-      
+      <button className='backBtn' onClick={goBack}>Home</button>
     </div>
   )
 }

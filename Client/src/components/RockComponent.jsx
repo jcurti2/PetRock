@@ -109,7 +109,7 @@ useEffect(()=> {
                 <img src={singleRock.picture} alt={singleRock.name} />
                 <p><b>{singleRock.name}</b></p>
                 <p>Rarity:{singleRock.rarity}</p>
-                <p>Value: {singleRock.cost}</p>
+                <p>${singleRock.cost}</p>
                 <EditRock rock={singleRock} getRock={getRock}/>
                 <button className='cardButton' onClick={() => sellRock(singleRock)}>Sell Rock</button>
               </div> 
@@ -117,15 +117,16 @@ useEffect(()=> {
                 ))
               )
         }</div>
-      <div className='container'>
+        <div className='randRocks'><p>Rocks for Sale</p></div>
+      <div className='container'> 
         {randRock.map((indvRock) => {
           return (
             <div key={indvRock.name} className='cardGenerated'>
               <img src={indvRock.picture} alt={indvRock.name} />
               <p><b>{indvRock.name}</b></p>
               <p>Rarity: {indvRock.rarity}</p>
-              <p>Value: {indvRock.cost}</p>
-              <button  onClick={() => buyRock(indvRock)}>Buy Rock</button>
+              <p>${indvRock.cost}</p>
+              <button className='cardButton'  onClick={() => buyRock(indvRock)}>Buy Rock</button>
             </div>
           );
         })}

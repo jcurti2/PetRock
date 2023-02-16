@@ -24,7 +24,6 @@ return(
         <input  
             name = 'name'
             type='text'
-            // value={updateRock.name}
             placeholder="Rock Name"
             onChange={handleChange}
             >
