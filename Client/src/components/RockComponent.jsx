@@ -15,7 +15,7 @@ const RockComponent = ({owner, getOwners}) => {
 
   const getRock = async () => {
     console.log(owner);
-    const temp = await axios.get(`http://localhost:3001/api/rocksowner/${owner._id}`)
+    const temp = await axios.get(`/api/rocksowner/${owner._id}`)
     console.log(temp);
     setRock(temp.data.rock)
     console.log(rock);
@@ -49,15 +49,15 @@ const removeRandRock = (genRock) => {
 
 const sellRock = async ( rock ) => {
 
-  let temp = await axios.get(`http://localhost:3001/api/owner/${owner._id}`)
+  let temp = await axios.get(`/api/owner/${owner._id}`)
 
   let verifyOwner = temp.data.owner
   
   verifyOwner.money = verifyOwner.money + Math.floor((rock.cost * .75))
 
-  let response = await axios.put(`http://localhost:3001/api/owner/${verifyOwner._id}`,verifyOwner)
+  let response = await axios.put(`/api/owner/${verifyOwner._id}`,verifyOwner)
   
-  await axios.delete(`http://localhost:3001/api/rocks/${rock._id}`)
+  await axios.delete(`/api/rocks/${rock._id}`)
 
   getRock();
 
@@ -69,7 +69,7 @@ const buyRock = async (rock) => {
   
   rock.owner_id = owner._id
 
-  let temp = await axios.get(`http://localhost:3001/api/owner/${owner._id}`)
+  let temp = await axios.get(`/api/owner/${owner._id}`)
 
   let verifyOwner = temp.data.owner
 
@@ -77,9 +77,9 @@ const buyRock = async (rock) => {
   {
   verifyOwner.money = verifyOwner.money - rock.cost
 
-  let response = await axios.put(`http://localhost:3001/api/owner/${verifyOwner._id}`,verifyOwner)
+  let response = await axios.put(`/api/owner/${verifyOwner._id}`,verifyOwner)
 
-  await axios.post(`http://localhost:3001/api/rocks/`, rock)
+  await axios.post(`/api/rocks/`, rock)
   removeRandRock(rock)
   } else{
   alert('Not enough money')

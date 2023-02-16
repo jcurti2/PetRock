@@ -23,7 +23,7 @@ const goBack = () => {
 //functions
 
 const getOwners = async () => {
-    const temp = await axios.get(`http://localhost:3001/api/owner/${location.state.id}`).then(res => {
+    const temp = await axios.get(`/api/owner/${location.state.id}`).then(res => {
       setOwner(res.data.owner) 
       setLoad(true)})
     // setOwner(temp.data.owner)

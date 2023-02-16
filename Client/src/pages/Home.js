@@ -13,13 +13,13 @@ const navigate = useNavigate()
 //functions created here
 const submitClick = async (e) => {
     e.preventDefault()
-    const res = await axios.get(`http://localhost:3001/api/ownername/${ownerName}`)
+    const res = await axios.get(`/api/ownername/${ownerName}`)
     console.log(res);
     if(res && Object.keys(res.data).length && res.data.owner.name == ownerName){
       navigate('/page2', {state:{id:res.data.owner._id,}})
     } 
     else{
-          const response = await axios.post('http://localhost:3001/api/owner/',{
+          const response = await axios.post('/api/owner/',{
           "name": ownerName,
           "money": "1000"
           })
