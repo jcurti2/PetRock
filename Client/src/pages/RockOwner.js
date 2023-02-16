@@ -16,25 +16,26 @@ const location  = useLocation();
 //functions
 
 const getOwners = async () => {
-    const temp = await axios.get(`http://localhost:3001/api/owner/${location.state.id}`)
-    setOwner(temp.data.owner)
+    const temp = await axios.get(`http://localhost:3001/api/owner/${location.state.id}`).then(res => {setOwner(res.data.owner)})
+    // setOwner(temp.data.owner)
     console.log('here,' + `${location.state.id}`);
+    console.log(temp);
 }
 
  useEffect(() =>{
 getOwners()
 
- },[])
+ },[owner])
 
   return (
-    <div>
+    <div >
+<div className='rockOwner'>
+      <h2 className='ownerName'>{owner.name}</h2>
 
-      {owner.name}
-
-      {owner.money}
+      <h2 className='ownerMoney'> ${owner.money}</h2>
 
       {owner.picture}
-
+</div>
       <RockComponent owner={owner} getOwners={getOwners}/>
       
     </div>

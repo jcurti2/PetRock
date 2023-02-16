@@ -1,5 +1,13 @@
 .App {
+  height: 100%;
+  width: 100%;
   text-align: center;
+  background: #e8e8e8;
+}
+body{
+  height: 100%;
+  width: 100%;
+  background: #e8e8e8;
 }
 
 .App-logo {
@@ -35,4 +43,49 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.card {
+  line-height: 5px;
+  margin: 1rem;
+  width: 12rem;
+  height: 18rem;
+  border-radius: 30px;
+  background: #e0e0e0;
+  box-shadow: 15px 15px 30px #bebebe,
+             -15px -15px 30px #ffffff;
+}
+.cardGenerated{
+  line-height: 0.8rem;
+  margin: 1rem;
+  width: 190px;
+  height: 254px;
+  border-radius: 30px;
+  background: #e0e0e0;
+  box-shadow: 15px 15px 30px #bebebe,
+             -15px -15px 30px #ffffff;
+}
+img{
+  margin-top: 1rem;
+  width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cardButton{
+  margin-top: 0.5rem;
+}
+
+.rockOwner{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20rem;
+  margin-right: 20rem;
+  font-size: 2rem;
 }

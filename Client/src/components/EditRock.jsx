@@ -29,7 +29,7 @@ return(
             onChange={handleChange}
             >
           </input>
-          <button type='submit'>ChangeName</button>
+          <button className='cardButton' type='submit'>ChangeName</button>
           </form>
           
     </div>

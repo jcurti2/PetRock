@@ -15,7 +15,7 @@ const RockComponent = ({owner, getOwners}) => {
   const [randRock, setRandRock] = useState([])
 
   const getRock = async () => {
-    
+    console.log(owner);
     const temp = await axios.get(`http://localhost:3001/api/rocksowner/${owner._id}`)
     console.log(temp);
     setRock(temp.data.rock)
@@ -41,6 +41,11 @@ function rockGenerator(){
   }   
     setRandRock(arr)
 }
+const removeRandRock = (genRock) => {
+  setRandRock((current) =>
+    current.filter((indvRock) => indvRock.rarity !== genRock.rarity && indvRock.cost !== genRock.cost)
+  );
+};
 
 
 const sellRock = async ( rock ) => {
@@ -76,9 +81,11 @@ const buyRock = async (rock) => {
   let response = await axios.put(`http://localhost:3001/api/owner/${verifyOwner._id}`,verifyOwner)
 
   await axios.post(`http://localhost:3001/api/rocks/`, rock)
+  removeRandRock(rock)
   } else{
   alert('Not enough money')
   }
+  
   getOwners()
   getRock()
   
@@ -96,29 +103,30 @@ useEffect(()=> {
   
   return (
     <div>
-      {
+       <div className='container'>{
       rock &&( 
           rock.map((singleRock)=> (
-              <div key={singleRock._id}> <EditRock rock={singleRock} getRock={getRock}/>
+              <div key={singleRock._id} className='card'> 
                 <img src={singleRock.picture} alt={singleRock.name} />
-                <p>Name: {singleRock.name}</p>
+                <p><b>{singleRock.name}</b></p>
                 <p>Rarity:{singleRock.rarity}</p>
                 <p>Value: {singleRock.cost}</p>
-                <button onClick={() => sellRock(singleRock)}>Sell Rock</button>
+                <EditRock rock={singleRock} getRock={getRock}/>
+                <button className='cardButton' onClick={() => sellRock(singleRock)}>Sell Rock</button>
               </div> 
       
                 ))
               )
-        }
-      <div>
+        }</div>
+      <div className='container'>
         {randRock.map((indvRock) => {
           return (
-            <div key={indvRock.name}>
+            <div key={indvRock.name} className='cardGenerated'>
               <img src={indvRock.picture} alt={indvRock.name} />
-              <p>Name: {indvRock.name}</p>
+              <p><b>{indvRock.name}</b></p>
               <p>Rarity: {indvRock.rarity}</p>
               <p>Value: {indvRock.cost}</p>
-              <button onClick={() => buyRock(indvRock)}>Buy Rock</button>
+              <button  onClick={() => buyRock(indvRock)}>Buy Rock</button>
             </div>
           );
         })}
