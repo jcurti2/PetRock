@@ -3,12 +3,12 @@ const routes = require('./routes');
 const db = require('./db');
 const logger = require('morgan');
 const cors = require('cors')
-app.use(express.static(`${__dirname}/client/build`))
+
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-
+app.use(express.static(`${__dirname}/client/build`))
 app.use(express.json())
 
 app.use(cors())
