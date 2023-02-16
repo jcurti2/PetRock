@@ -19,9 +19,9 @@
 
 
 ### ***Screenshots***
-#### [Home Page(https://user-images.githubusercontent.com/121517472/219479466-b282b0b6-2357-4cfa-8268-3571bf93748c.png)
+#### [Home Page](https://user-images.githubusercontent.com/121517472/219479466-b282b0b6-2357-4cfa-8268-3571bf93748c.png)
 
-#### [Page2] (https://user-images.githubusercontent.com/121517472/219478549-97b776ea-c460-4289-8d36-74973b6b5112.png)
+#### [Page2](https://user-images.githubusercontent.com/121517472/219478549-97b776ea-c460-4289-8d36-74973b6b5112.png)
 
 ***
 ### ***Future Updates***
