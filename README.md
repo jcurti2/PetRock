@@ -4,7 +4,7 @@
 [LinkedIn](https://www.linkedin.com/in/josh-curtis-77284769/) [GitHub](https://github.com/jcurti2) 
 ***
 ### ***Description***
-#### This is my PetRock app where you try and obtain the rarest rock collection with limited monetary resources. 
+#### This is my Rock Collection app where you try and obtain the rarest rock collection with limited monetary resources. 
 ***
 ### ***Techonologies Used***
 * React
@@ -19,8 +19,9 @@
 
 
 ### ***Screenshots***
-#### ![Home Page](https://user-images.githubusercontent.com/121517472/219478549-97b776ea-c460-4289-8d36-74973b6b5112.png)
+#### [Home Page(https://user-images.githubusercontent.com/121517472/219479466-b282b0b6-2357-4cfa-8268-3571bf93748c.png)
 
+#### [Page2] (https://user-images.githubusercontent.com/121517472/219478549-97b776ea-c460-4289-8d36-74973b6b5112.png)
 
 ***
 ### ***Future Updates***
