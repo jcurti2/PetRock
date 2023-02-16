@@ -9,6 +9,7 @@ const RockOwner = () => {
 // //use states
 const [owner, setOwner] = useState('')
 const location  = useLocation();
+const [load, setLoad] = useState(false)
 
 //pass this into get owner by id
 // ${location.state.id}
@@ -16,7 +17,9 @@ const location  = useLocation();
 //functions
 
 const getOwners = async () => {
-    const temp = await axios.get(`http://localhost:3001/api/owner/${location.state.id}`).then(res => {setOwner(res.data.owner)})
+    const temp = await axios.get(`http://localhost:3001/api/owner/${location.state.id}`).then(res => {
+      setOwner(res.data.owner) 
+      setLoad(true)})
     // setOwner(temp.data.owner)
     console.log('here,' + `${location.state.id}`);
     console.log(temp);
@@ -25,7 +28,7 @@ const getOwners = async () => {
  useEffect(() =>{
 getOwners()
 
- },[owner])
+ },[])
 
   return (
     <div >
@@ -36,7 +39,7 @@ getOwners()
 
       {owner.picture}
 </div>
-      <RockComponent owner={owner} getOwners={getOwners}/>
+      {load && (<RockComponent owner={owner} getOwners={getOwners}/>) }
       
     </div>
   )
