@@ -1,12 +1,12 @@
 const Rock = require('../models/rock');
 const Owner = require('../models/owner');
 
-const getOwnerByOwnerId = async (req, res) => {
+const getOwnerByOwnerName = async (req, res) => {
     try{
         const  id  = req.params.name
         
         // const query = { owner_id:id }
-        const owner = await Owner.find({ name:id  });
+        const owner = await Owner.findOne({ name:id  });
         if(owner) {
             return res.status(200).json({ owner });
         } 
@@ -162,5 +162,5 @@ module.exports = {
     updateOwner,
     deleteOwner,
     getRockByOwnerId,
-    getOwnerByOwnerId
+    getOwnerByOwnerName
 }

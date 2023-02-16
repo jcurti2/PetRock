@@ -4,7 +4,7 @@ const router = Router();
 
 router.get('/rocksowner/:owner_id', controllers.getRockByOwnerId)
 
-router.get('/ownername/:id', controllers.getOwnerByOwnerId)
+router.get('/ownername/:name', controllers.getOwnerByOwnerName)
 
 router.get('/', (req, res) => res.send('this is earths core!!!'))
 

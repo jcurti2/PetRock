@@ -24,13 +24,14 @@ return(
         <input  
             name = 'name'
             type='text'
-            value={updateRock.name}
+            // value={updateRock.name}
             placeholder="Rock Name"
             onChange={handleChange}
             >
           </input>
           <button type='submit'>ChangeName</button>
           </form>
+          
     </div>
 )
 }

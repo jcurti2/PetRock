@@ -14,8 +14,6 @@ const RockComponent = ({owner, getOwners}) => {
 
   const [randRock, setRandRock] = useState([])
 
-  const [updateOwnerMoney, setUpdateOwnerMoney] = useState(owner)
-
   const getRock = async () => {
     
     const temp = await axios.get(`http://localhost:3001/api/rocksowner/${owner._id}`)
@@ -78,9 +76,9 @@ const buyRock = async (rock) => {
   let response = await axios.put(`http://localhost:3001/api/owner/${verifyOwner._id}`,verifyOwner)
 
   await axios.post(`http://localhost:3001/api/rocks/`, rock)
-} else{
-  alert('Not enought money')
-}
+  } else{
+  alert('Not enough money')
+  }
   getOwners()
   getRock()
   
@@ -98,6 +96,20 @@ useEffect(()=> {
   
   return (
     <div>
+      {
+      rock &&( 
+          rock.map((singleRock)=> (
+              <div key={singleRock._id}> <EditRock rock={singleRock} getRock={getRock}/>
+                <img src={singleRock.picture} alt={singleRock.name} />
+                <p>Name: {singleRock.name}</p>
+                <p>Rarity:{singleRock.rarity}</p>
+                <p>Value: {singleRock.cost}</p>
+                <button onClick={() => sellRock(singleRock)}>Sell Rock</button>
+              </div> 
+      
+                ))
+              )
+        }
       <div>
         {randRock.map((indvRock) => {
           return (
@@ -105,21 +117,13 @@ useEffect(()=> {
               <img src={indvRock.picture} alt={indvRock.name} />
               <p>Name: {indvRock.name}</p>
               <p>Rarity: {indvRock.rarity}</p>
-              <p>Cost: {indvRock.cost}</p>
+              <p>Value: {indvRock.cost}</p>
               <button onClick={() => buyRock(indvRock)}>Buy Rock</button>
             </div>
           );
         })}
      
       </div>
-     {rock &&( 
-     rock.map((singleRock)=> (
-    
-       <div key={singleRock._id}> <EditRock rock={singleRock} getRock={getRock}/>Name: {singleRock.name}       
-        <button onClick={() => sellRock(singleRock)}>Sell Rock</button>
-       </div> 
-      
-    )))}
     </div>
   )
 }
