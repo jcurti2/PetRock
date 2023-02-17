@@ -54,8 +54,6 @@ const getAllRocks = async (req, res) => {
 
 const getRockById = async (req, res) => {
 
-    console.log("get rock by id");
-
     try{
         const { id } = req.params;
         const rock = await Rock.findById(id)

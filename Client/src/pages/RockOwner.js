@@ -21,10 +21,7 @@ const RockOwner = () => {
     const temp = await axios.get(`/api/owner/${location.state.id}`).then(res => {
       setOwner(res.data.owner)
       setLoad(true)
-    })
-
-    console.log('here,' + `${location.state.id}`);
-    console.log(temp);
+    }) 
   }
 
   useEffect(() => {

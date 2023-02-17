@@ -13,7 +13,7 @@ const Home = () => {
   const submitClick = async (e) => {
     e.preventDefault()
     const res = await axios.get(`/api/ownername/${ownerName}`)
-    console.log(res);
+    
     if (res && Object.keys(res.data).length && res.data.owner.name == ownerName) {
       navigate('/page2', { state: { id: res.data.owner._id, } })
     }

@@ -14,11 +14,11 @@ const RockComponent = ({ owner, getOwners }) => {
   const [randRock, setRandRock] = useState([])
 
   const getRock = async () => {
-    console.log(owner);
+    
     const temp = await axios.get(`/api/rocksowner/${owner._id}`)
-    console.log(temp);
+    
     setRock(temp.data.rock)
-    console.log(rock);
+    
   }
 
   function rockGenerator() {
@@ -68,7 +68,7 @@ const RockComponent = ({ owner, getOwners }) => {
   const buyRock = async (rock) => {
 
     rock.owner_id = owner._id
-    console.log(owner._id);
+   
     let temp = await axios.get(`/api/owner/${owner._id}`)
 
     let verifyOwner = temp.data.owner
