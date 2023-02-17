@@ -1,8 +1,11 @@
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
-navigate = useNavigate()
+
 
 const About = () => {
+  
+  // navigate = useNavigate()
+  
   //future updates
   // const goBack = () => {
   //   navigate(-1);
