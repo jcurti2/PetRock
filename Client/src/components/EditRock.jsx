@@ -7,7 +7,7 @@ const EditRock = ({ rock, getRock }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(updateRock._id);
+        
         let response = await axios.put(`/api/rocks/${updateRock._id}`, updateRock)
         getRock()
     }
