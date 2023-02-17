@@ -68,7 +68,7 @@ const sellRock = async ( rock ) => {
 const buyRock = async (rock) => {
   
   rock.owner_id = owner._id
-
+console.log(owner._id);
   let temp = await axios.get(`/api/owner/${owner._id}`)
 
   let verifyOwner = temp.data.owner
