@@ -1,39 +1,38 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import PageOne from '../components/PageOne'
 import axios from 'axios'
-// import PageTwo from '../components/RockComponent'
+
 
 const Home = () => {
-//const will be created here
-const [ownerName, setOwnerName] = useState('')
-const [load, setLoad] = useState(false)
-const navigate = useNavigate()
 
-//functions created here
-const submitClick = async (e) => {
+  const [ownerName, setOwnerName] = useState('')
+  const navigate = useNavigate()
+
+
+  const submitClick = async (e) => {
     e.preventDefault()
-    const res = await axios.get(`http://localhost:3001/api/ownername/${ownerName}`)
+    const res = await axios.get(`/api/ownername/${ownerName}`)
     console.log(res);
-    if(res && Object.keys(res.data).length && res.data.owner.name == ownerName){
-      navigate('/page2', {state:{id:res.data.owner._id,}})
-    } 
-    else{
-          const response = await axios.post('http://localhost:3001/api/owner/',{
-          "name": ownerName,
-          "money": "1000"
-          })
-          let ownerId = response.data.owner._id
-
-          navigate('/page2', {state:{id:ownerId,}})
+    if (res && Object.keys(res.data).length && res.data.owner.name == ownerName) {
+      navigate('/page2', { state: { id: res.data.owner._id, } })
     }
-}
+    else {
+      const response = await axios.post('/api/owner/', {
+        "name": ownerName,
+        "money": "1000"
+      })
+      let ownerId = response.data.owner._id
+
+      navigate('/page2', { state: { id: ownerId, } })
+    }
+  }
 
 
-const handleChange = (event) => {
+  const handleChange = (event) => {
     setOwnerName(event.target.value)
   }
-return (
+  return (
     <div>
       <PageOne submitClick={submitClick} handleChange={handleChange} ownerName={ownerName} />
     </div>
@@ -42,12 +41,3 @@ return (
 
 export default Home
 
-
-
-//reference button
-// const testClick = async (e) => {
-//   e.preventDefault()
-//     let response = await axios.get('http://localhost:3001/api/owner/')
-//     setSearchQuery(response)
-//     console.log(response);
-// }
