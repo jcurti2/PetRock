@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import PageOne from '../components/PageOne'
 import axios from 'axios'
 
@@ -7,7 +7,6 @@ import axios from 'axios'
 const Home = () => {
 
   const [ownerName, setOwnerName] = useState('')
-  const [load, setLoad] = useState(false)
   const navigate = useNavigate()
 
 
